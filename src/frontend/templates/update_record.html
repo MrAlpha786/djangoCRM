@@ -3,8 +3,8 @@
 {% block content %}
 
 <div class="col-md-6 offset-md-3">
-    <h1>Add Record</h1>
-    <form action="{% url 'add_record' %}" method="POST">
+    <h1>Update Record</h1>
+    <form action="" method="POST">
         {% csrf_token %}
         {% if form.errors %}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
