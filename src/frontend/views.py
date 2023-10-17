@@ -3,12 +3,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 from frontend.forms import SignUpForm
+from frontend.models import Record
 
 
 def home(request, *args, **kwargs):
     # If user is just visiting the page
     if request.method == "GET":
-        return render(request, 'home.html', {})
+        records = Record.objects.all()
+        return render(request, 'home.html', {'records': records})
 
     username = request.POST['username']
     password = request.POST['password']
