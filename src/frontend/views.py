@@ -23,4 +23,6 @@ def login_user(request, *args, **kwargs):
     pass
 
 def logout_user(request, *args, **kwargs):
-    pass
+    logout(request)
+    messages.info(request, "You have been logged out!")
+    return redirect(home)
