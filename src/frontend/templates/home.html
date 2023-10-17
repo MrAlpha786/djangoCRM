@@ -24,7 +24,7 @@
     <tbody>
         {% for record in records %}
         <tr>
-            <th scope="row">{{ record.id }}</th>
+            <th scope="row"><a href="{% url 'record' record.id %}">{{ record.id }}</a></th>
             <td>{{ record.first_name }} {{ record.last_name }}</td>
             <td>{{ record.email }}</td>
             <td>{{ record.phone }}</td>
@@ -37,10 +37,11 @@
         {% endfor %}
     </tbody>
 </table>
+
 {% endif %}
 
 {% else %}
-
+<div class="col-md-6 offset-md-3"></div>
 <h1>Login</h1>
 <form action="{% url 'home' %}" method="POST">
     {% csrf_token %}
@@ -52,7 +53,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
-
+</div>
 {% endif %}
 
 {% endblock %}

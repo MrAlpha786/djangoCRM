@@ -39,7 +39,7 @@ def register_user(request, *args, **kwargs):
     if request.method == "GET":
         form = SignUpForm()
         return render(request, 'register.html', {'form': form})
-    
+
     form = SignUpForm(request.POST)
     if form.is_valid():
         form.save()
@@ -51,7 +51,15 @@ def register_user(request, *args, **kwargs):
         login(request, user)
         messages.success(request, "You have been successfully registered.")
         return redirect(home)
-    
-    return render(request, 'register.html', {'form': form})
-    
 
+    return render(request, 'register.html', {'form': form})
+
+
+def customer_record(request, pk, *args, **kwargs):
+    if request.user.is_authenticated:
+        # Look up records
+        customer_record = Record.objects.get(id=pk)
+        return render(request, 'record.html', {'customer_record': customer_record})
+
+    messages.error(request, "You should be logged in to view that page...")
+    return redirect(home)
