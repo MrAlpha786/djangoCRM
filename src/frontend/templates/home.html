@@ -5,7 +5,10 @@
 {% if user.is_authenticated %}
 
 {% if records %}
-<h1>Records...</h1>
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Records:</h1>
+    <a href="{% url 'add_record' %}" class="btn btn-primary">Add Record</a>
+</div>
 
 <table class="table table-striped table-hover table-bordered">
     <thead class="table-dark">

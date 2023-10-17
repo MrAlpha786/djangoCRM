@@ -35,10 +35,8 @@
                 <td>{{ customer_record.created_at }}</td>
             </tr>
         </table>
-        <div class="text-end">
-            <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
-            <a href="#" class="btn btn-danger">Delete</a>
-        </div>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+        <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
     </div>
 </div>
 

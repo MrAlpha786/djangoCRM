@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-from frontend.forms import SignUpForm
+from frontend.forms import AddRecordForm, SignUpForm
 from frontend.models import Record
 
 
@@ -62,4 +62,28 @@ def customer_record(request, pk, *args, **kwargs):
         return render(request, 'record.html', {'customer_record': customer_record})
 
     messages.error(request, "You should be logged in to view that page...")
+    return redirect(home)
+
+
+def delete_record(request, pk, *args, **kwargs):
+    if request.user.is_authenticated:
+        Record.objects.get(id=pk).delete()
+        messages.success(request, "Record deleted successfully.")
+        return redirect(home)
+
+    messages.error(request, "You must be logged in to do that...")
+    return redirect(home)
+
+
+def add_record(request, *args, **kwargs):
+    form = AddRecordForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Record added...")
+                return redirect('home')
+        return render(request, 'add_record.html', {'form': form})
+
+    messages.success(request, "You must be logged in to do that...")
     return redirect(home)
