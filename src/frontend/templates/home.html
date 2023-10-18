@@ -4,7 +4,6 @@
 
 {% if user.is_authenticated %}
 
-{% if records %}
 <div class="d-flex justify-content-between align-items-center">
     <h1>Records:</h1>
     <a href="{% url 'add_record' %}" class="btn btn-primary">Add Record</a>
@@ -41,21 +40,20 @@
     </tbody>
 </table>
 
-{% endif %}
-
 {% else %}
-<div class="col-md-6 offset-md-3"></div>
-<h1>Login</h1>
-<form action="{% url 'home' %}" method="POST">
-    {% csrf_token %}
-    <div class="mb-3">
-        <input type="text" class="form-control" name="username" placeholder="Username" required>
-    </div>
-    <div class="mb-3">
-        <input type="password" class="form-control" name="password" placeholder="Password" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-</form>
+
+<div class="col-md-6 offset-md-3">
+    <h1>Login</h1>
+    <form action="{% url 'home' %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control" name="username" placeholder="Username" required>
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
 </div>
 {% endif %}
 

@@ -1,0 +1,8 @@
+asgiref==3.7.2
+autopep8==2.0.4
+Django==4.2.6
+django-environ==0.11.2
+packaging==23.2
+psycopg2-binary==2.9.9
+pycodestyle==2.11.1
+sqlparse==0.4.4
