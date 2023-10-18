@@ -3,23 +3,12 @@
       {
         "src": "djangoCRM/wsgi.py",
         "use": "@vercel/python"
-      },
-      {
-        "src": "build_files.sh",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "static"
-        }
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
         "dest": "djangoCRM/wsgi.py"
-      },
-      {
-        "src": "/static/(.*)",
-        "dest": "/static/$1"
       }
     ]
 }
